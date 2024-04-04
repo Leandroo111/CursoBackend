@@ -22,17 +22,19 @@ class ProductsManager {
             const productsDB = await this.readFile()
 
             const productFound = productsDB.find(prod => product.code === prod.code)
-            console.log('Product Found: ', productFound)
+
             if (productFound) return 'Ya existe el producto'
 
             if (productsDB.length === 0) {
+
                 product.id = 1
+
             } else {
-                product.id = productsDB[productsDB.length - 1]
+                product.id = productsDB[productsDB.length - 1].id + 1
             }
 
             productsDB.push(product)
-            await fs.promises.writeFile(this.path, JSON.stringify(productsDB, null, '\t'), 'uth-8')
+            await fs.promises.writeFile(this.path, JSON.stringify(productsDB, null, '\t'), 'utf-8')
             return productsDB
 
         } catch (error) {
@@ -40,22 +42,31 @@ class ProductsManager {
         }
     }
 
-    getProducts = async () => {
+    getProducts = async (limit) => {
         try {
 
-            return await this.readFile()
+            const productsDB = await this.readFile();
+
+            if (!limit) return productsDB;
+            
+            const limitProducts = productsDB.filter(prod => prod.id <= limit);
+            return limitProducts;
 
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
 
     getProductById = async (pid) => {
         try {
+
+            if (!pid) return 'Ingrese un Id'
+
             const productsDB = await this.readFile()
             const product = productsDB.find(prod => prod.id === pid)
 
             if (!product) return 'No se encontro un producto con ese ID'
+
             return product
 
         } catch (error) {
@@ -65,19 +76,20 @@ class ProductsManager {
 
     updateProduct = async (pid, productToUpdate) => {
         try {
+
             const productsDB = await this.readFile();
 
-            const productFound = productsDB.find(prod => prod.id === pid);
-            if (productFound === -1) {
+            const productIndex = productsDB.findIndex(prod => prod.id === pid);
+            if (productIndex === -1) {
                 return 'No se encontró un producto con ese ID.';
             }
-            
-            const updatedProduct = { ...productsDB[productFound], ...productToUpdate };
-            productsDB[productFound] = updatedProduct;
+
+            const updatedProduct = { ...productsDB[productIndex], ...productToUpdate };
+            productsDB[productIndex] = updatedProduct;
 
             await fs.promises.writeFile(this.path, JSON.stringify(productsDB, null, '\t'), 'utf-8');
             return 'Producto actualizado.';
-        
+
         } catch (error) {
             console.log(error);
             return 'Ocurrió un error al actualizar el producto.';
@@ -87,15 +99,16 @@ class ProductsManager {
     deleteProduct = async (pid) => {
 
         try {
-            
+
             const productsDB = await this.readFile();
 
-            const productFound = productsDB.find(prod => prod.id === pid);
-            if (productFound === -1) {
+            const productIndex = productsDB.findIndex(prod => prod.id === pid);
+
+            if (productIndex === -1) {
                 return 'No se encontró un producto con ese ID.';
             }
 
-            productsDB.splice(productFound, 1);
+            productsDB.splice(productIndex, 1);
 
             await fs.promises.writeFile(this.path, JSON.stringify(productsDB, null, '\t'), 'utf-8');
             return 'Producto eliminado.';

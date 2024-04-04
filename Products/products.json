@@ -1,0 +1,92 @@
+[
+	{
+		"title": "Nvidia RTX 4080",
+		"description": "Placa de video NVIDIA RTX 4080 16gb",
+		"price": 2000000,
+		"thumbnail": "Sin imagen",
+		"code": "123",
+		"stock": 25,
+		"id": 1
+	},
+	{
+		"title": "Nvidia RTX 4070",
+		"description": "Placa de video NVIDIA RTX 4070 12gb",
+		"price": 1100000,
+		"thumbnail": "Sin imagen",
+		"code": "1234",
+		"stock": 25,
+		"id": 2
+	},
+	{
+		"title": "Nvidia RTX 4060",
+		"description": "Placa de video NVIDIA RTX 4060 8gb",
+		"price": 700000,
+		"thumbnail": "Sin imagen",
+		"code": "12345",
+		"stock": 25,
+		"id": 3
+	},
+	{
+		"title": "Nvidia RTX 4060 Ti",
+		"description": "Placa de video NVIDIA RTX 4060 Ti 16gb",
+		"price": 800000,
+		"thumbnail": "Sin imagen",
+		"code": "123456",
+		"stock": 25,
+		"id": 4
+	},
+	{
+		"title": "Nvidia RTX 4070 Ti",
+		"description": "Placa de video NVIDIA RTX 4070 Ti 12gb",
+		"price": 1300000,
+		"thumbnail": "Sin imagen",
+		"code": "1234567",
+		"stock": 25,
+		"id": 5
+	},
+	{
+		"title": "AMD Ryzen 9 7900X",
+		"description": "Microprocesador AMD Ryzen 9 7900x 5.6 GHz",
+		"price": 900000,
+		"thumbnail": "Sin imagen",
+		"code": "123456789",
+		"stock": 25,
+		"id": 6
+	},
+	{
+		"title": "AMD Ryzen 7 7700X",
+		"description": "Microprocesador AMD Ryzen 7 7700X 5.4 GHz",
+		"price": 800000,
+		"thumbnail": "Sin imagen",
+		"code": "9",
+		"stock": 25,
+		"id": 7
+	},
+	{
+		"title": "AMD Ryzen 5 7600X",
+		"description": "Microprocesador AMD Ryzen 5 7600X 5.3 GHz",
+		"price": 600000,
+		"thumbnail": "Sin imagen",
+		"code": "98",
+		"stock": 25,
+		"id": 8
+	},
+	{
+		"title": "AMD Ryzen 9 7950X3D",
+		"description": "Microprocesador AMD Ryzen 9 7950X3D 5.7 GHz",
+		"price": 1000000,
+		"thumbnail": "Sin imagen",
+		"code": "987",
+		"stock": 25,
+		"id": 9
+	},
+	{
+		"title": "AMD Ryzen 9 7950X",
+		"description": "Microprocesador AMD Ryzen 9 7950X 5.7 GHz",
+		"price": 950000,
+		"thumbnail": "Sin imagen",
+		"code": "9876",
+		"stock": 25,
+		"id": 10
+	}
+]
