@@ -49,8 +49,8 @@ class ProductsManager {
 
             if (!limit) return productsDB;
             
-            const limitProducts = productsDB.filter(prod => prod.id <= limit);
-            return limitProducts;
+            const products = productsDB.filter(prod => prod.id <= limit);
+            return products;
 
         } catch (error) {
             console.log(error);
@@ -119,3 +119,4 @@ class ProductsManager {
         }
     }
 }
+module.exports = ProductsManager;

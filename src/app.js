@@ -1,10 +1,11 @@
 const express = require('express');
-const ProductsManager = require('./productManager');
+const ProductsManager = require('./productManager.js');
 const path = '../Products/products.json'
 
 const app = express()
 
 const products = new ProductsManager(path);
+
 
 app.get('/products', async (req, res,) => {
 
@@ -16,7 +17,8 @@ app.get('/products', async (req, res,) => {
 app.get('/products/:pid', async (req, res,) => {
 
     const { pid } = req.params
-    const response = await products.getProductById(pid)
+    const numberPid = +pid
+    const response = await products.getProductById(numberPid)
     res.send(response)
 })
 
@@ -24,5 +26,5 @@ app.listen(8080, err => {
 
     if (err) console.log(err)
 
-    console.log('Dscuchando el puerto 8080')
+    console.log('Escuchando el puerto 8080')
 })
