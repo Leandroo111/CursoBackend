@@ -1,30 +1,24 @@
-const express = require('express');
-const ProductsManager = require('./productManager.js');
-const path = '../Products/products.json'
+import express from 'express'
+import productsRouter from './routes/products.router.js'
+import cartsRouter from './routes/carts.router.js'
 
 const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-const products = new ProductsManager(path);
+const main = () => {
+
+    app.use('/api/products', productsRouter)
+    app.use('/api/carts', cartsRouter)
+
+    app.listen(8080, err => {
+
+        if (err) console.log(err)
+
+        console.log('Escuchando el puerto 8080')
+    })
+}
+
+main ()
 
 
-app.get('/products', async (req, res,) => {
-
-    const { limit } = req.query
-    const response = await products.getProducts(limit)
-    res.send(response)
-})
-
-app.get('/products/:pid', async (req, res,) => {
-
-    const { pid } = req.params
-    const numberPid = +pid
-    const response = await products.getProductById(numberPid)
-    res.send(response)
-})
-
-app.listen(8080, err => {
-
-    if (err) console.log(err)
-
-    console.log('Escuchando el puerto 8080')
-})

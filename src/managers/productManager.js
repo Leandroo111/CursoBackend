@@ -1,4 +1,4 @@
-const fs = require('node:fs')
+import fs from 'node:fs'
 
 class ProductsManager {
     constructor(path) {
@@ -25,6 +25,8 @@ class ProductsManager {
 
             if (productFound) return 'Ya existe el producto'
 
+            if (!product.title || !product.description || !product.price || !product.status || !product.code || !product.stock || !product.category) return 'Ingrese todos los campos'
+
             if (productsDB.length === 0) {
 
                 product.id = 1
@@ -35,7 +37,7 @@ class ProductsManager {
 
             productsDB.push(product)
             await fs.promises.writeFile(this.path, JSON.stringify(productsDB, null, '\t'), 'utf-8')
-            return productsDB
+            return product
 
         } catch (error) {
             console.log(error)
@@ -119,4 +121,4 @@ class ProductsManager {
         }
     }
 }
-module.exports = ProductsManager;
+export default ProductsManager
