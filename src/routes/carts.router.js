@@ -20,6 +20,9 @@ router.get('/:cid', async (req, res,) => {
 router.post('/:cid/products/:pid', async (req, res,) => {
 
     const { cid, pid } = req.params
+
+    if(isNaN(pid)) return res.send('El parametro pid debe ser un numero')
+    
     const response = await carts.addProductsToCart(parseInt(cid), {product: parseInt(pid), quantity: 1})
     res.send(response)
 })

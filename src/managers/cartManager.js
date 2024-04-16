@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 
 class CartsManager {
-    constructor (path) {
+    constructor(path) {
         this.path = path
     }
 
@@ -66,17 +66,21 @@ class CartsManager {
             if (!product) return 'Ingrese un producto'
 
             const cartsDB = await this.readFile()
-            const cart = cartsDB.find(cart => cart.id === cid)
-            const productFound = cartsDB.find(carts => carts.products === product)
+            const cart = cartsDB.findIndex(cart => cart.id === cid)
 
-            if (!cart) return 'No se encontro un carrito con ese ID'
+            if (cart === -1) return 'No se encontro un carrito con ese ID'
 
-            if(!productFound) {
-                cart.products.push(product);
+            const productFound = cartsDB[cart].products.findIndex(prod => prod.product === product.product)
+
+            if (productFound === -1) {
+                cartsDB[cart].products.push(product)
+                await fs.promises.writeFile(this.path, JSON.stringify(cartsDB, null, '\t'), 'utf-8')
+                return cartsDB[cart]
             }
-            
+
+            cartsDB[cart].products[productFound].quantity++
             await fs.promises.writeFile(this.path, JSON.stringify(cartsDB, null, '\t'), 'utf-8')
-            return cart
+            return cartsDB[cart]
 
         } catch (error) {
             console.log(error)
