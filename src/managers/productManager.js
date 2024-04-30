@@ -61,7 +61,7 @@ class ProductsManager {
 
     getProductById = async (pid) => {
         try {
-
+            
             if (!pid) return 'Ingrese un Id'
 
             const productsDB = await this.readFile()

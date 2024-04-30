@@ -25,6 +25,7 @@ router.post('/:cid/products/:pid', async (req, res,) => {
     const { cid, pid } = req.params
 
     if(isNaN(pid)) return res.send('El parametro pid debe ser un numero')
+    if(isNaN(cid)) return res.send('El parametro cid debe ser un numero')
 
     const productFound = await products.getProductById(parseInt(pid))
 
