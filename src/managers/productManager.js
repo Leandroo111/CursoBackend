@@ -25,7 +25,7 @@ class ProductsManager {
 
             if (productFound) return 'Ya existe el producto'
 
-            if (!product.title || !product.description || !product.price || !product.status || !product.code || !product.stock || !product.category) return 'Ingrese todos los campos'
+            if (!product.title || !product.description || !product.price || !product.code || !product.stock || !product.category) return 'Ingrese todos los campos'
 
             if (productsDB.length === 0) {
 

@@ -16,4 +16,24 @@ router.get('/', async (req, res) => {
     })
 })
 
+router.get('/realtimeproducts', async (req, res) => {
+    const { io } = req
+    let productList = []
+
+    io.on('connection', socket => {
+        console.log('Cliente conectado')
+        socket.on('product', async data => {
+            const addProduct = await products.addProducts(data)
+            const getProducts = await products.getProducts()
+            console.log('Producto agragado:', addProduct)
+            productList = getProducts
+            console.log(productList)
+            io.emit('productList', productList)
+        })
+    })
+    res.render('realTimeProducts', {
+        productList
+    })
+})
+
 export default router

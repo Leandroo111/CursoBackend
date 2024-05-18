@@ -20,9 +20,9 @@ router.get('/:pid', async (req, res,) => {
 })
 
 router.post('/', async (req, res,) => {
-    const { title, description, price, status, code, stock, category, thumbnails } = req.body
+    const { title, description, price, status, code, stock, category, thumbnail } = req.body
 
-    if (typeof title !== 'string' || typeof description !== 'string' || typeof price !== 'number' || typeof code !== 'string' || typeof stock !== 'number' || typeof category !== 'string' || typeof thumbnails !== 'string') return res.send ('Respete el formato')
+    if (typeof title !== 'string' || typeof description !== 'string' || typeof price !== 'number' || typeof code !== 'string' || typeof stock !== 'number' || typeof category !== 'string' || typeof thumbnail !== 'string') return res.send ('Respete el formato')
     const newProduct = {
         title,
         description,
@@ -31,7 +31,7 @@ router.post('/', async (req, res,) => {
         code,
         stock,
         category,
-        thumbnails
+        thumbnail
     }
     
     const response = await products.addProducts(newProduct)
