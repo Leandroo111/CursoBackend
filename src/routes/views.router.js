@@ -31,9 +31,6 @@ router.get('/realtimeproducts', async (req, res) => {
             io.emit('productList', productList)
         })
     })
-    res.render('realTimeProducts', {
-        productList
-    })
 })
 
 export default router

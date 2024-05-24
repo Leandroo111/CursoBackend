@@ -1,6 +1,7 @@
 
-const socket = io ()
+const socket = io()
 let product
+/* socket.emit('product', product) */
 document.getElementById('addProduct').addEventListener('click', function () {
     Swal.fire({
         title: 'Ingrese los datos del producto',
@@ -11,7 +12,7 @@ document.getElementById('addProduct').addEventListener('click', function () {
             '<p>Precio:<input type="number" id="swal-input3" class="swal2-input"></p>' +
             '<p>Codigo:<input type="text" id="swal-input4" class="swal2-input"></p>' +
             '<p>Stock:<input type="number" id="swal-input5" class="swal2-input"></p>' +
-            '<p>Category:<input type="string" id="swal-input6" class="swal2-input"></p>',
+            '<p>Categoria:<input type="string" id="swal-input6" class="swal2-input"></p>',
 
         focusConfirm: false,
         allowOutsideClick: false,
@@ -43,4 +44,17 @@ document.getElementById('addProduct').addEventListener('click', function () {
 
 socket.on('productList', data => {
     console.log('Productos: ', data)
+    let log = document.getElementById('productsList')
+    let products = ''
+    data.forEach(product => {
+        products += `<p> Producto: ${product.title} </p>
+        <p> Descripcion: ${product.description} </p> 
+        <p> Precio: ${product.price} </p> 
+        <p> Codigo: ${product.code} </p> 
+        <p> Stock: ${product.stock} </p> 
+        <p> Categoria: ${product.category} </p> 
+        <hr> `
+    })
+    log.innerHTML = products
+    
 })
